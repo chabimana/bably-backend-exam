@@ -17,15 +17,36 @@ import java.util.List;
  * @ProjectName: babyl-backend-exam
  *
  */
-public class BabylService {
+public class BabylService implements IBabylonService {
 
-	private List<String> response = new ArrayList<String>();
-
-	/**
-	 * Prints the multiple of three challenge.
+	/*
+	 *
+	 * @see rw.babyl.service.IBabylonService#checkPerfectSqare(int)
 	 */
-	public List<String> printMultipleOfThreeChallenge() {
-		for (int i = 0; i <= 100; i++) {
+	@Override
+	public boolean checkPerfectSqare(int number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/*
+	 *
+	 * @see rw.babyl.service.IBabylonService#isFibonacciSequence(int)
+	 */
+	@Override
+	public boolean isFibonacciSequence(int number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/*
+	 *
+	 * @see rw.babyl.service.IBabylonService#multipleOfThreeChallenge(int, int)
+	 */
+	@Override
+	public List<String> multipleOfThreeChallenge(int minNumber, int maxNumber) {
+		List<String> response = new ArrayList<>();
+		for (int i = minNumber; i <= maxNumber; i++) {
 			if (i % 3 == 0 && i % 5 != 0) {
 				response.add("Fizz");
 			} else if (i % 3 == 0 && i % 5 == 0) {
@@ -36,11 +57,4 @@ public class BabylService {
 		}
 		return response;
 	}
-
-	public static void main(String[] args) {
-		BabylService babylService = new BabylService();
-		List<String> res = babylService.printMultipleOfThreeChallenge();
-		System.out.println(res.toString());
-	}
-
 }
