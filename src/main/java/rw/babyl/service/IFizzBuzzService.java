@@ -10,23 +10,23 @@ import java.util.List;
  * @ProjectName: babyl-backend-exam
  *
  */
-public interface IBabylonService {
+public interface IFizzBuzzService {
 
 	/**
-	 * Check perfect sqare.
+	 * Checks if is perfect square.
 	 *
 	 * @param number the number
-	 * @return true, if successful
+	 * @return true, if is perfect square
 	 */
-	public boolean checkPerfectSqare(int number);
+	public boolean isPerfectSquare(int number);
 
 	/**
-	 * Checks if is fibonacci sequence.
+	 * Checks if is in fibonacci sequence.
 	 *
 	 * @param number the number
-	 * @return true, if is fibonacci sequence
+	 * @return true, if is in fibonacci sequence
 	 */
-	public boolean isFibonacciSequence(int number);
+	public boolean isInFibonacciSequence(int number);
 
 	/**
 	 * Multiple of three challenge.

@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class BabylService implements IBabylonService {
+public class FizzBuzzService implements IFizzBuzzService {
 
 	/*
 	 *
 	 * @see rw.babyl.service.IBabylonService#checkPerfectSqare(int)
 	 */
 	@Override
-	public boolean checkPerfectSqare(int number) {
+	public boolean isPerfectSquare(int number) {
 		int square = (int) Math.sqrt(number);
 		if (square * square == number)
 			return true;
@@ -33,9 +33,9 @@ public class BabylService implements IBabylonService {
 	 * @see rw.babyl.service.IBabylonService#isFibonacciSequence(int)
 	 */
 	@Override
-	public boolean isFibonacciSequence(int number) {
-		if (checkPerfectSqare((int) (5 * (Math.pow(number, 2)) + 4))
-				|| checkPerfectSqare((int) (5 * (Math.pow(number, 2)) - 4)))
+	public boolean isInFibonacciSequence(int number) {
+		if (isPerfectSquare((int) (5 * (Math.pow(number, 2)) + 4))
+				|| isPerfectSquare((int) (5 * (Math.pow(number, 2)) - 4)))
 			return true;
 		return false;
 	}
