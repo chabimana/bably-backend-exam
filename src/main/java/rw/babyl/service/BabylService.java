@@ -1,9 +1,3 @@
-/*
- * Copyright (c)  2018. Irembo
- *
- * All rights reserved.
- */
-
 package rw.babyl.service;
 
 import java.util.ArrayList;
