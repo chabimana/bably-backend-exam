@@ -46,15 +46,9 @@ public class FizzBuzzPinkFlamingoService implements IFizzBuzzPinkFlamingoService
 	 */
 	@Override
 	public List<Object> fizzBuzzChallenge(int minNumber, int maxNumber) {
-		List<Object> response = new ArrayList<>();
-		int tempNumber;
-		if (minNumber > maxNumber) {
-			// swap the number
-			tempNumber = minNumber;
-			maxNumber = minNumber;
-			minNumber = tempNumber;
-		}
+
 		// loop and find multiple of 3 and others that meet proposed condition
+		List<Object> response = new ArrayList<>();
 		for (int i = minNumber; i <= maxNumber; i++) {
 			if (i % 3 == 0 && i % 5 != 0) {
 				response.add("Fizz");
@@ -75,8 +69,10 @@ public class FizzBuzzPinkFlamingoService implements IFizzBuzzPinkFlamingoService
 	 */
 	@Override
 	public List<Object> pinkFlamingoChallenge(int minNumber, int maxNumber) {
+		if ((minNumber > maxNumber || minNumber == maxNumber)) {
+			throw new IllegalArgumentException(" Invalid range");
+		}
 		List<Object> response = new ArrayList<>();
-
 		for (int i = minNumber; i <= maxNumber; i++) {
 			if (i % 3 == 0 && i % 5 != 0)
 				response.add("Fizz");
