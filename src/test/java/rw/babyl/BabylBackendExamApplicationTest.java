@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import rw.babyl.service.IFizzBuzzService;
+import rw.babyl.service.IFizzBuzzPinkFlamingoService;
 
 /**
  * @Author: chabiman
@@ -24,7 +24,7 @@ import rw.babyl.service.IFizzBuzzService;
 public class BabylBackendExamApplicationTest {
 
 	@Autowired
-	private IFizzBuzzService babylonService;
+	private IFizzBuzzPinkFlamingoService babylonService;
 
 	@Test
 	public void testSquareNumberPositive() {
@@ -56,7 +56,7 @@ public class BabylBackendExamApplicationTest {
 	 */
 	@Test
 	public void testMultipleOfThreeChallengePositive1() {
-		List<Object> result = babylonService.multipleOfThreeChallenge(0, 100);
+		List<Object> result = babylonService.fizzBuzzChallenge(0, 100);
 		Assert.assertTrue(!result.isEmpty());
 
 	}
@@ -66,7 +66,7 @@ public class BabylBackendExamApplicationTest {
 	 */
 	@Test
 	public void testMultipleOfThreeChallengePositive2() {
-		List<Object> result = babylonService.multipleOfThreeChallenge(100, 0);
+		List<Object> result = babylonService.fizzBuzzChallenge(100, 0);
 		Assert.assertTrue(!result.isEmpty());
 	}
 }

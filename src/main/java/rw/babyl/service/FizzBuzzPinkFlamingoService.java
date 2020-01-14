@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class FizzBuzzService implements IFizzBuzzService {
+public class FizzBuzzPinkFlamingoService implements IFizzBuzzPinkFlamingoService {
 
 	/*
 	 *
@@ -45,7 +45,7 @@ public class FizzBuzzService implements IFizzBuzzService {
 	 * @see rw.babyl.service.IBabylonService#multipleOfThreeChallenge(int, int)
 	 */
 	@Override
-	public List<Object> multipleOfThreeChallenge(int minNumber, int maxNumber) {
+	public List<Object> fizzBuzzChallenge(int minNumber, int maxNumber) {
 		List<Object> response = new ArrayList<>();
 		int tempNumber;
 		if (minNumber > maxNumber) {
@@ -54,7 +54,6 @@ public class FizzBuzzService implements IFizzBuzzService {
 			maxNumber = minNumber;
 			minNumber = tempNumber;
 		}
-
 		// loop and find multiple of 3 and others that meet proposed condition
 		for (int i = minNumber; i <= maxNumber; i++) {
 			if (i % 3 == 0 && i % 5 != 0) {
@@ -66,6 +65,32 @@ public class FizzBuzzService implements IFizzBuzzService {
 			} else {
 				response.add(i);
 			}
+		}
+		return response;
+	}
+
+	/*
+	 *
+	 * @see rw.babyl.service.IFizzBuzzService#pinkFlamingoChallenge(int, int)
+	 */
+	@Override
+	public List<Object> pinkFlamingoChallenge(int minNumber, int maxNumber) {
+
+		List<Object> response = new ArrayList<>();
+
+		for (int i = minNumber; i <= maxNumber; i++) {
+			if (i % 3 == 0 && i % 5 != 0)
+				response.add("Fizz");
+			else if (i % 3 == 0 && i % 5 == 0)
+				response.add("FizzBuzz");
+			else if (i % 3 != 0 && i % 5 == 0)
+				response.add("Buzz");
+			else if (isInFibonacciSequence(i) && i % 5 != 0 && i % 3 != 0)
+				response.add("Pink");
+			else if (isInFibonacciSequence(i) && i % 5 == 0 && i % 3 == 0)
+				response.add("Pink Flamingo");
+			else
+				response.add(i);
 		}
 		return response;
 	}

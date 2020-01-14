@@ -10,7 +10,7 @@ import java.util.List;
  * @ProjectName: babyl-backend-exam
  *
  */
-public interface IFizzBuzzService {
+public interface IFizzBuzzPinkFlamingoService {
 
 	/**
 	 * Checks if is perfect square.
@@ -18,7 +18,7 @@ public interface IFizzBuzzService {
 	 * @param number the number
 	 * @return true, if is perfect square
 	 */
-	public boolean isPerfectSquare(int number);
+	boolean isPerfectSquare(int number);
 
 	/**
 	 * Checks if is in fibonacci sequence.
@@ -26,15 +26,24 @@ public interface IFizzBuzzService {
 	 * @param number the number
 	 * @return true, if is in fibonacci sequence
 	 */
-	public boolean isInFibonacciSequence(int number);
+	boolean isInFibonacciSequence(int number);
 
 	/**
-	 * Multiple of three challenge.
+	 * Fizz buzz challenge.
 	 *
 	 * @param minNumber the min number
 	 * @param maxNumber the max number
-	 * @return the hash map
+	 * @return the list
 	 */
-	public List<Object> multipleOfThreeChallenge(int minNumber, int maxNumber);
+	List<Object> fizzBuzzChallenge(int minNumber, int maxNumber);
+
+	/**
+	 * Pink flamingo challenge.
+	 *
+	 * @param minNummber the min nummber
+	 * @param maxNumber  the max number
+	 * @return the list
+	 */
+	List<Object> pinkFlamingoChallenge(int minNummber, int maxNumber);
 
 }
