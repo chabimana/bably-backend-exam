@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import rw.babyl.service.IFizzBuzzPinkFlamingoService;
+import rw.babyl.service.fizzbuzz.IFizzBuzzPinkFlamingoService;
 
 /**
  * @Author: chabiman

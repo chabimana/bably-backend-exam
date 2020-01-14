@@ -1,4 +1,4 @@
-package rw.babyl.service;
+package rw.babyl.service.fizzbuzz;
 
 import java.util.List;
 

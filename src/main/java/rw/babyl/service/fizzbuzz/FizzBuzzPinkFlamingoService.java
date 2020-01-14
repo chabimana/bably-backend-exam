@@ -1,4 +1,4 @@
-package rw.babyl.service;
+package rw.babyl.service.fizzbuzz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,6 @@ public class FizzBuzzPinkFlamingoService implements IFizzBuzzPinkFlamingoService
 	 */
 	@Override
 	public List<Object> pinkFlamingoChallenge(int minNumber, int maxNumber) {
-
 		List<Object> response = new ArrayList<>();
 
 		for (int i = minNumber; i <= maxNumber; i++) {
