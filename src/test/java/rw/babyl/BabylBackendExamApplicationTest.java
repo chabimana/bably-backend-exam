@@ -1,5 +1,7 @@
 package rw.babyl;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,5 +49,23 @@ public class BabylBackendExamApplicationTest {
 	@Test(expected = AssertionError.class)
 	public void testFibonacciNumberNegative() {
 		Assert.assertTrue(babylonService.isFibonacciSequence(4));
+	}
+
+	@Test
+	public void testMultipleOfThreeChallengePositive1() {
+		List<String> result = babylonService.multipleOfThreeChallenge(0, 100);
+
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+
+	@Test
+	public void testMultipleOfThreeChallengePositive2() {
+		List<String> result = babylonService.multipleOfThreeChallenge(100, 0);
+
+		for (String string : result) {
+			System.out.println(string);
+		}
 	}
 }
