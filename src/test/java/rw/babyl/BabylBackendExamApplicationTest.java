@@ -36,4 +36,16 @@ public class BabylBackendExamApplicationTest {
 		Assert.assertFalse(babylonService.checkPerfectSqare(9));
 	}
 
+	@Test
+	public void testFibonacciNumberPostive() {
+		Assert.assertTrue(babylonService.isFibonacciSequence(1));
+		Assert.assertTrue(babylonService.isFibonacciSequence(2));
+		Assert.assertTrue(babylonService.isFibonacciSequence(3));
+		Assert.assertTrue(babylonService.isFibonacciSequence(5));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void testFibonacciNumberNegative() {
+		Assert.assertTrue(babylonService.isFibonacciSequence(4));
+	}
 }
