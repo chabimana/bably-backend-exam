@@ -1,1 +1,23 @@
 
+*.class
+*.log
+*.pdf
+
+generated/
+target/
+logs/
+
+.flattened-pom.xml
+
+# Intellij specs
+.idea/
+.idea_modules/
+*.iml
+
+# Eclipse
+.metadata/
+.settings/
+.project
+.classpath
+/bin/
+
