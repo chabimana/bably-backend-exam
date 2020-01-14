@@ -25,7 +25,9 @@ public class BabylService implements IBabylonService {
 	 */
 	@Override
 	public boolean checkPerfectSqare(int number) {
-		// TODO Auto-generated method stub
+		int square = (int) Math.sqrt(number);
+		if (square * square == number)
+			return true;
 		return false;
 	}
 
@@ -46,6 +48,15 @@ public class BabylService implements IBabylonService {
 	@Override
 	public List<String> multipleOfThreeChallenge(int minNumber, int maxNumber) {
 		List<String> response = new ArrayList<>();
+		int tempNumber;
+		if (minNumber > maxNumber) {
+			// swap the number
+			tempNumber = minNumber;
+			maxNumber = minNumber;
+			minNumber = tempNumber;
+		}
+
+		// loop and find multiple of 3 and others that meet proposed condition
 		for (int i = minNumber; i <= maxNumber; i++) {
 			if (i % 3 == 0 && i % 5 != 0) {
 				response.add("Fizz");
