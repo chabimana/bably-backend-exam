@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * @Author: chabiman
  * @FileName: BabylService.java
- * @Date: Jan 13, 2020
- * @Package: rw.crvs.core.birth.service
- * @ProjectName: crvs-core
+ * @Date: Jan 14, 2020
+ * @Package: rw.babyl.service
+ * @ProjectName: babyl-backend-exam
  *
  */
 public class BabylService {
