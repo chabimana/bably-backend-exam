@@ -37,7 +37,9 @@ public class BabylService implements IBabylonService {
 	 */
 	@Override
 	public boolean isFibonacciSequence(int number) {
-		// TODO Auto-generated method stub
+		if (checkPerfectSqare((int) (5 * (Math.pow(number, 2)) + 4))
+				|| checkPerfectSqare((int) (5 * (Math.pow(number, 2)) - 4)))
+			return true;
 		return false;
 	}
 
