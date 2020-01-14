@@ -3,6 +3,8 @@ package rw.babyl.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @Author: chabiman
  * @FileName: BabylService.java
@@ -11,6 +13,7 @@ import java.util.List;
  * @ProjectName: babyl-backend-exam
  *
  */
+@Service
 public class BabylService implements IBabylonService {
 
 	/*
