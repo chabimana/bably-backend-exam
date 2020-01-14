@@ -45,8 +45,8 @@ public class FizzBuzzService implements IFizzBuzzService {
 	 * @see rw.babyl.service.IBabylonService#multipleOfThreeChallenge(int, int)
 	 */
 	@Override
-	public List<String> multipleOfThreeChallenge(int minNumber, int maxNumber) {
-		List<String> response = new ArrayList<>();
+	public List<Object> multipleOfThreeChallenge(int minNumber, int maxNumber) {
+		List<Object> response = new ArrayList<>();
 		int tempNumber;
 		if (minNumber > maxNumber) {
 			// swap the number
@@ -61,8 +61,10 @@ public class FizzBuzzService implements IFizzBuzzService {
 				response.add("Fizz");
 			} else if (i % 3 == 0 && i % 5 == 0) {
 				response.add("FizzBuzz");
+			} else if (i % 3 != 0 && i % 5 == 0) {
+				response.add("Buzz");
 			} else {
-				response.add(String.valueOf(i));
+				response.add(i);
 			}
 		}
 		return response;

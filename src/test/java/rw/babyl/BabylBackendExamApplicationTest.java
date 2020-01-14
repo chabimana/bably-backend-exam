@@ -56,11 +56,9 @@ public class BabylBackendExamApplicationTest {
 	 */
 	@Test
 	public void testMultipleOfThreeChallengePositive1() {
-		List<String> result = babylonService.multipleOfThreeChallenge(0, 100);
-		for (String string : result) {
-			System.out.println(string);
-		}
+		List<Object> result = babylonService.multipleOfThreeChallenge(0, 100);
 		Assert.assertTrue(!result.isEmpty());
+
 	}
 
 	/**
@@ -68,10 +66,7 @@ public class BabylBackendExamApplicationTest {
 	 */
 	@Test
 	public void testMultipleOfThreeChallengePositive2() {
-		List<String> result = babylonService.multipleOfThreeChallenge(100, 0);
-		for (String string : result) {
-			System.out.println(string);
-		}
+		List<Object> result = babylonService.multipleOfThreeChallenge(100, 0);
 		Assert.assertTrue(!result.isEmpty());
 	}
 }

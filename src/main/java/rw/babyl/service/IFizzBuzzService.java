@@ -33,8 +33,8 @@ public interface IFizzBuzzService {
 	 *
 	 * @param minNumber the min number
 	 * @param maxNumber the max number
-	 * @return the list
+	 * @return the hash map
 	 */
-	public List<String> multipleOfThreeChallenge(int minNumber, int maxNumber);
+	public List<Object> multipleOfThreeChallenge(int minNumber, int maxNumber);
 
 }

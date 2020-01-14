@@ -1,5 +1,7 @@
 package rw.babyl.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import rw.babyl.service.IFizzBuzzService;
-import rw.babyl.util.FizzBuzzResponse;
 import rw.babyl.util.PinkFlamingoResponse;
 
 /**
@@ -25,12 +26,13 @@ public class FizzFlamingoController {
 	@Autowired
 	private IFizzBuzzService babylonService;
 
-	@GetMapping(value = "/pinkbuzz")
-	public ResponseEntity<FizzBuzzResponse> getPinkBuzzResultChallenge(@PathVariable int minNumber,
-			@PathVariable int maxNumber) {
-		FizzBuzzResponse response = new FizzBuzzResponse();
+	@GetMapping(value = "/fizzbuzz/{minNumber}/{maxNumber}")
+	public ResponseEntity<List<Object>> getPinkBuzzResultChallenge(@PathVariable("minNumber") int minNumber,
+			@PathVariable("maxNumber") int maxNumber) {
 
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		List<Object> fizzBuzzResponse = babylonService.multipleOfThreeChallenge(minNumber, maxNumber);
+
+		return new ResponseEntity<>(fizzBuzzResponse, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/flamingo")
