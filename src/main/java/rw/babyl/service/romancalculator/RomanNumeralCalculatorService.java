@@ -53,7 +53,6 @@ public class RomanNumeralCalculatorService implements IRomanNumeralCalculatorSer
 		while (romanNumber.length() > 0 && i < masterList.size()) {
 			String romanCharacter = masterList.get(i).getRomanValue();
 			if (romanNumber.startsWith(romanCharacter)) {
-				System.out.println(romanNumber + " " + masterList.get(i).getNumeralValue() + " ksksks");
 				numeralValue += masterList.get(i).getNumeralValue();
 				romanNumber = romanNumber.substring(masterList.get(i).getRomanValue().length());
 			} else
@@ -82,6 +81,12 @@ public class RomanNumeralCalculatorService implements IRomanNumeralCalculatorSer
 
 		return masterList;
 
+	}
+
+	public static void main(String[] args) {
+		RomanNumeralCalculatorService service = new RomanNumeralCalculatorService();
+
+		System.out.println(service.convertRomanToNumericNumber("XIII"));
 	}
 
 }
