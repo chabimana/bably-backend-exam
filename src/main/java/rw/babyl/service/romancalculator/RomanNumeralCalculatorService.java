@@ -83,10 +83,4 @@ public class RomanNumeralCalculatorService implements IRomanNumeralCalculatorSer
 
 	}
 
-	public static void main(String[] args) {
-		RomanNumeralCalculatorService service = new RomanNumeralCalculatorService();
-
-		System.out.println(service.convertRomanToNumericNumber("XIII"));
-	}
-
 }
