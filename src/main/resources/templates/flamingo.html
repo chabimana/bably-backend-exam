@@ -31,6 +31,8 @@
 				</a></li>
 				<li class="nav-item  active"><a class="nav-link"
 					href="/flamingo">Pink Flamingo Challenge</a></li>
+				<li class="nav-item"><a class="nav-link" href="/convertor">Roman
+						Numeral Convertor</a></li>
 				<li class="nav-item"><a class="nav-link" href="/bodmas">Bodmas
 						Roman Calculator</a></li>
 			</ul>
@@ -65,8 +67,8 @@
 							th:errors="*{stopAt}"></span>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary">Generate Fizz Buzz and Pink Flammingo Numbers
-					</button>
+				<button type="submit" class="btn btn-primary">Generate Fizz
+					Buzz and Pink Flammingo Numbers</button>
 			</form>
 			<p th:if="${messageDisplay}">
 				<span th:text="${response}"></span>

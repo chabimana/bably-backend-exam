@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import rw.babyl.service.fizzbuzz.IFizzBuzzPinkFlamingoService;
+import rw.babyl.service.romancalculator.IRomanBodmasCalculatorService;
 import rw.babyl.util.FIzzBuzzRequest;
+import rw.babyl.util.RomanRequest;
 
 /**
  * @Author: chabiman
@@ -32,6 +34,9 @@ public class MainController {
 
 	@Autowired
 	private IFizzBuzzPinkFlamingoService fizzBuzzPinkFlamingoService;
+
+	@Autowired
+	private IRomanBodmasCalculatorService bodmasCalculator;
 
 	@GetMapping(value = "/")
 	public String homepage(Model model) {
@@ -90,5 +95,31 @@ public class MainController {
 		model.addAttribute("response", response);
 		model.addAttribute("messageDisplay", true);
 		return "flamingo";
+	}
+
+	@GetMapping(value = "/bodmas")
+	public String bodmasHome(Model model) {
+		RomanRequest request = new RomanRequest();
+		model.addAttribute("request", request);
+		return "bodmas";
+	}
+
+	@PostMapping(value = "/bodmas")
+	public String processBodmasExpression(@ModelAttribute("request") @Valid RomanRequest token, Model model,
+			BindingResult results) {
+		LOGGER.info("Request:  {}", token);
+		LOGGER.error("Errors: {}", results);
+		if (results.hasErrors()) {
+			RomanRequest request = new RomanRequest();
+			model.addAttribute("request", request);
+			return "bodmas";
+		}
+
+		String response = bodmasCalculator.calculateRomanExpressionResult(token.getRomanExpression().toUpperCase());
+
+		LOGGER.info("Response: {}", response);
+		model.addAttribute("response", response);
+		model.addAttribute("messageDisplay", true);
+		return "bodmas";
 	}
 }
