@@ -17,7 +17,7 @@ import rw.babyl.util.StandardRomanNumeralValue;
  *
  */
 @Service
-public class RomanNumeralConvertorlatorService implements IRomanNumeralConvertorService {
+public class RomanNumeralConvertorService implements IRomanNumeralConvertorService {
 
 	/*
 	 *
@@ -61,7 +61,7 @@ public class RomanNumeralConvertorlatorService implements IRomanNumeralConvertor
 		return numeralValue;
 	}
 
-	public List<StandardRomanNumeralValue> generateMasterData() {
+	public static List<StandardRomanNumeralValue> generateMasterData() {
 
 		List<StandardRomanNumeralValue> masterList = new ArrayList<>();
 

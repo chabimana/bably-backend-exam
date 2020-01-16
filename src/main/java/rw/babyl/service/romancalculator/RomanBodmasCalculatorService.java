@@ -2,6 +2,7 @@ package rw.babyl.service.romancalculator;
 
 import java.util.Stack;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,12 +16,40 @@ import org.springframework.stereotype.Service;
 @Service
 public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorService {
 
+	@Autowired
+	private IRomanNumeralConvertorService convertorService;
+
+	/*
+	 *
+	 * @see
+	 * rw.babyl.service.romancalculator.IRomanBodmasCalculatorService#generateNumeralExpressionFromRomanExpression(java.
+	 * lang.String)
+	 */
+	@Override
+	public String generateNumeralExpressionFromRomanExpression(String romanExpression) {
+		StringBuffer numeralExpression = new StringBuffer();
+		char[] tokens = romanExpression.toCharArray();
+		for (int i = 0; i < tokens.length; i++) {
+			if (isOperand(tokens[i])) {
+				numeralExpression.append(tokens[i]);
+			} else if (isRomanCharacter(tokens[i])) {
+				StringBuffer romanCharacter = new StringBuffer();
+				while (i < tokens.length && isRomanCharacter(tokens[i])) {
+
+					romanCharacter.append(tokens[i++]);
+				}
+				numeralExpression.append(convertorService.convertRomanToNumericNumber(romanCharacter.toString()));
+			}
+		}
+		return numeralExpression.toString();
+	}
+
 	/*
 	 *
 	 * @see rw.babyl.service.romancalculator.IRomanBodmasCalculatorService#processRomanExpression(java.lang.String)
 	 */
 	@Override
-	public int processRomanExpression(String inputExpression) {
+	public int processNumeralExpression(String inputExpression) {
 		char[] tokens = inputExpression.toCharArray();
 
 		// Add all numbers in the stack
@@ -52,7 +81,6 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 					values.push(process(ops.pop(), values.pop(), values.pop()));
 				ops.pop();
 			}
-
 			// Current token is an operator.
 			else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/') {
 				while (!ops.empty() && processPrecedence(tokens[i], ops.peek()))
@@ -63,11 +91,8 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 		while (!ops.empty())
 			values.push(process(ops.pop(), values.pop(), values.pop()));
 
-		int res = values.pop();
+		return values.pop();
 
-		System.out.println(res + " RESULT");
-
-		return res;
 	}
 
 	/**
@@ -102,5 +127,26 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 			return false;
 		else
 			return true;
+	}
+
+	/**
+	 * @param c
+	 * @return
+	 */
+	private boolean isRomanCharacter(char c) {
+		if (c == 'I' || c == 'V' || c == 'X' || c == 'L' || c == 'C' || c == 'D' || c == 'M') {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param c
+	 * @return
+	 */
+	private boolean isOperand(char c) {
+		if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')')
+			return true;
+		return false;
 	}
 }

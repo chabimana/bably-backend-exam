@@ -1,5 +1,6 @@
 package rw.babyl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class TestRomanBodmasCalculatorService {
 
 	@Test
 	public void testRomanBodmasCalculator() {
-		romanBodmasCalculatorService.processRomanExpression("100 * ( 2 + 12 ) / 14");
+		Assert.assertEquals(100, romanBodmasCalculatorService.processNumeralExpression("100 * ( 2 + 12 ) / 14"));
+	}
+
+	@Test
+	public void testRomanToNumeralConversion() {
+		Assert.assertEquals("(3+4)*10",
+				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
+
+		Assert.assertEquals("(13+4)*10-53",
+				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
 	}
 }

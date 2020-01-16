@@ -10,5 +10,16 @@ package rw.babyl.service.romancalculator;
  */
 public interface IRomanBodmasCalculatorService {
 
-	int processRomanExpression(String inputExpression);
+	/**
+	 * @param inputExpression
+	 * @return
+	 */
+	int processNumeralExpression(String inputExpression);
+
+	/**
+	 * @param romanExpression
+	 * @return
+	 */
+	String generateNumeralExpressionFromRomanExpression(String romanExpression);
+
 }
