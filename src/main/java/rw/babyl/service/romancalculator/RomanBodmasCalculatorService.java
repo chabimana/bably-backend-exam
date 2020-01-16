@@ -42,13 +42,13 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	 */
 	@Override
 	public String generateNumeralExpressionFromRomanExpression(String romanExpression) {
-		StringBuffer numeralExpression = new StringBuffer();
+		StringBuilder numeralExpression = new StringBuilder();
 		char[] tokens = romanExpression.toCharArray();
 		for (int i = 0; i < tokens.length; i++) {
 			if (isOperand(tokens[i])) {
 				numeralExpression.append(tokens[i] + " ");
 			} else if (isRomanCharacter(tokens[i])) {
-				StringBuffer romanCharacter = new StringBuffer();
+				StringBuilder romanCharacter = new StringBuilder();
 				while (i < tokens.length && isRomanCharacter(tokens[i])) {
 					romanCharacter.append(tokens[i++]);
 				}
@@ -73,7 +73,7 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 			if (tokens[i] == ' ')
 				continue;
 			if (tokens[i] >= '0' && tokens[i] <= '9') {
-				StringBuffer sbuf = new StringBuffer();
+				StringBuilder sbuf = new StringBuilder();
 				while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9')
 					sbuf.append(tokens[i++]);
 				values.push(Integer.parseInt(sbuf.toString()));
@@ -99,10 +99,12 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	}
 
 	/**
-	 * @param operand
-	 * @param b
-	 * @param a
-	 * @return
+	 * Process.
+	 *
+	 * @param operand the operand
+	 * @param b       the b
+	 * @param a       the a
+	 * @return the int
 	 */
 	private int process(char operand, int b, int a) {
 		switch (operand) {
@@ -125,9 +127,11 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	}
 
 	/**
-	 * @param b
-	 * @param a
-	 * @return
+	 * Calculate power.
+	 *
+	 * @param b the b
+	 * @param a the a
+	 * @return the int
 	 */
 	private int calculatePower(int b, int a) {
 		LOGGER.info("Variables: {} power of {}", a, b);
@@ -139,9 +143,11 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	}
 
 	/**
-	 * @param operand_two
-	 * @param opoperand_one
-	 * @return
+	 * Check precedence.
+	 *
+	 * @param operand_two   the operand two
+	 * @param opoperand_one the opoperand one
+	 * @return true, if successful
 	 */
 	private boolean checkPrecedence(char operand_two, char opoperand_one) {
 
@@ -154,8 +160,10 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	}
 
 	/**
-	 * @param c
-	 * @return
+	 * Checks if is roman character.
+	 *
+	 * @param c the c
+	 * @return true, if is roman character
 	 */
 	private boolean isRomanCharacter(char c) {
 		if (c == 'I' || c == 'V' || c == 'X' || c == 'L' || c == 'C' || c == 'D' || c == 'M') {
@@ -165,8 +173,10 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	}
 
 	/**
-	 * @param c
-	 * @return
+	 * Checks if is operand.
+	 *
+	 * @param c the c
+	 * @return true, if is operand
 	 */
 	private boolean isOperand(char c) {
 		if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c == '^')

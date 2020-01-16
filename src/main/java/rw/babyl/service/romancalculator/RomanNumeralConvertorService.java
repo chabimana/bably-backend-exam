@@ -61,6 +61,11 @@ public class RomanNumeralConvertorService implements IRomanNumeralConvertorServi
 		return numeralValue;
 	}
 
+	/**
+	 * Generate master data.
+	 *
+	 * @return the list
+	 */
 	public static List<StandardRomanNumeralValue> generateMasterData() {
 
 		List<StandardRomanNumeralValue> masterList = new ArrayList<>();

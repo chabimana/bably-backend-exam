@@ -26,18 +26,27 @@ public class TestFizzBuzzPinkFlamingoChallengeService {
 	@Autowired
 	private IFizzBuzzPinkFlamingoService babylonService;
 
+	/**
+	 * Test square number positive.
+	 */
 	@Test
 	public void testSquareNumberPositive() {
 		Assert.assertTrue(babylonService.isPerfectSquare(4));
 		Assert.assertFalse(babylonService.isPerfectSquare(10));
 	}
 
+	/**
+	 * Test perfect square negative.
+	 */
 	@Test(expected = AssertionError.class)
 	public void testPerfectSquareNegative() {
 		Assert.assertTrue(babylonService.isPerfectSquare(3));
 		Assert.assertFalse(babylonService.isPerfectSquare(9));
 	}
 
+	/**
+	 * Test fibonacci number postive.
+	 */
 	@Test
 	public void testFibonacciNumberPostive() {
 		Assert.assertTrue(babylonService.isInFibonacciSequence(1));
@@ -46,6 +55,9 @@ public class TestFizzBuzzPinkFlamingoChallengeService {
 		Assert.assertTrue(babylonService.isInFibonacciSequence(5));
 	}
 
+	/**
+	 * Test fibonacci number negative.
+	 */
 	@Test(expected = AssertionError.class)
 	public void testFibonacciNumberNegative() {
 		Assert.assertTrue(babylonService.isInFibonacciSequence(4));
@@ -66,7 +78,7 @@ public class TestFizzBuzzPinkFlamingoChallengeService {
 	 */
 	@Test
 	public void testMultipleOfThreeChallengePositive2() {
-		List<Object> result = babylonService.fizzBuzzChallenge(100, 0);
+		List<Object> result = babylonService.fizzBuzzChallenge(100, 200);
 		Assert.assertTrue(!result.isEmpty());
 	}
 }

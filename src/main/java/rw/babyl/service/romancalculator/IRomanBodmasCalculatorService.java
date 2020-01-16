@@ -11,20 +11,37 @@ package rw.babyl.service.romancalculator;
 public interface IRomanBodmasCalculatorService {
 
 	/**
-	 * @param inputExpression
-	 * @return
+	 * Process numeral expression.This method was implemented from the algorithm developed by someone else. My job here
+	 * is its implementation
+	 *
+	 * @param inputExpression the input expression
+	 * @return the int
 	 */
 	int processNumeralExpression(String inputExpression);
 
 	/**
-	 * @param romanExpression
-	 * @return
+	 * Generate numeral expression from roman expression. <b>This method</b> was extended from the tutorial I took from
+	 * https://www.geeksforgeeks.org/expression-evaluation/. My work was the extension of what the explained in their
+	 * algorthm and adding missing operations (power)
+	 *
+	 * @param romanExpression the roman expression
+	 * @return the string
 	 */
 	String generateNumeralExpressionFromRomanExpression(String romanExpression);
 
 	/**
-	 * @param romaExpression
-	 * @return
+	 * Calculate roman expression result. This is the main method that accepts a roman expression (roman numbers and
+	 * operands) and processes it and returns the roman value of the result. It call many utils methods that helps in
+	 * parsing, converting and processing the operations and then returns the result
+	 * 
+	 * @Step1: get the expression
+	 * @Step2: convert it to numeral one by calling a method that does that.
+	 * @Step3: call a method that calculates the result with a numeral expression.
+	 * @Step4: convert a returned numeral result to roman expression then.
+	 * @Step5: return the result
+	 *
+	 * @param romaExpression the roma expression
+	 * @return the string
 	 */
 	String calculateRomanExpressionResult(String romaExpression);
 
