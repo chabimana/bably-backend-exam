@@ -23,50 +23,46 @@ import rw.babyl.service.romancalculator.IRomanNumeralConvertorService;
 public class TestRomanBodmasCalculatorService {
 
 	@Autowired
-	private IRomanBodmasCalculatorService romanBodmasCalculatorService;
+	private IRomanBodmasCalculatorService calculatorService;
 
 	@Autowired
 	private IRomanNumeralConvertorService convertorService;
 
 	@Test
 	public void testRomanBodmasCalculator() {
-		Assert.assertEquals(100, romanBodmasCalculatorService.processNumeralExpression("100 * ( 2 + 12 ) / 14"));
+		Assert.assertEquals(100, calculatorService.processNumeralExpression("100 * ( 2 + 12 ) / 14"));
 
-		Assert.assertEquals(30, romanBodmasCalculatorService.processNumeralExpression("(3 + 5 ) * 3 + 6"));
+		Assert.assertEquals(30, calculatorService.processNumeralExpression("(3 + 5 ) * 3 + 6"));
 	}
 
 	@Test
 	public void testRomanToNumeralConversion() {
 
 		Assert.assertEquals("( 3 + 4 ) * 10 ",
-				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
-		System.out.println(
-				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
+				calculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
+		System.out.println(calculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
 		Assert.assertEquals("( 13 + 4 ) * 10 - 53 ",
-				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
+				calculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
 	}
 
 	@Test
 	public void testArthimeticOperationsOnRomanExpresions() {
-		Assert.assertEquals("VII", romanBodmasCalculatorService.calculateRomanExpressionResult("III + IV"));
-		Assert.assertEquals("XXIV",
-				romanBodmasCalculatorService.calculateRomanExpressionResult("(III + V ) * III"));
-		Assert.assertEquals("XXX",
-				romanBodmasCalculatorService.calculateRomanExpressionResult("(III + V ) * III + VI"));
-		Assert.assertEquals("LIV",
-				romanBodmasCalculatorService.calculateRomanExpressionResult("VI + II * (III + V ) * III"));
+		Assert.assertEquals("VII", calculatorService.calculateRomanExpressionResult("III + IV"));
+		Assert.assertEquals("XXIV", calculatorService.calculateRomanExpressionResult("(III + V ) * III"));
+		Assert.assertEquals("XXX", calculatorService.calculateRomanExpressionResult("(III + V ) * III + VI"));
+		Assert.assertEquals("LIV", calculatorService.calculateRomanExpressionResult("VI + II * (III + V ) * III"));
 
 		Assert.assertEquals(
-				convertorService.convertNumeralToRomanNumber(
-						romanBodmasCalculatorService.processNumeralExpression("(13 + 4 ) * 10 - 53")),
-				romanBodmasCalculatorService.calculateRomanExpressionResult("(XIII + IV ) * X - LIII"));
+				convertorService
+						.convertNumeralToRomanNumber(calculatorService.processNumeralExpression("(13 + 4 ) * 10 - 53")),
+				calculatorService.calculateRomanExpressionResult("(XIII + IV ) * X - LIII"));
 	}
 
 	@Test
 	public void testPowerOperationOnRomanExpressions() {
-		System.out.println(romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ II"));
-		Assert.assertEquals("XXXI", romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ II +VI"));
+		System.out.println(calculatorService.calculateRomanExpressionResult("V ^ II"));
+		Assert.assertEquals("XXXI", calculatorService.calculateRomanExpressionResult("V ^ II +VI"));
 
-		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ (V - III )"));
+		Assert.assertEquals("XXV", calculatorService.calculateRomanExpressionResult("V ^ (V - III )"));
 	}
 }
