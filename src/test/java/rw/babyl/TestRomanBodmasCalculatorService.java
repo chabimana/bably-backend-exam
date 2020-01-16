@@ -48,25 +48,25 @@ public class TestRomanBodmasCalculatorService {
 
 	@Test
 	public void testArthimeticOperationsOnRomanExpresions() {
-		Assert.assertEquals("VII", romanBodmasCalculatorService.calculateRomanExpressionResultString("III + IV"));
+		Assert.assertEquals("VII", romanBodmasCalculatorService.calculateRomanExpressionResult("III + IV"));
 		Assert.assertEquals("XXIV",
-				romanBodmasCalculatorService.calculateRomanExpressionResultString("(III + V ) * III"));
+				romanBodmasCalculatorService.calculateRomanExpressionResult("(III + V ) * III"));
 		Assert.assertEquals("XXX",
-				romanBodmasCalculatorService.calculateRomanExpressionResultString("(III + V ) * III + VI"));
+				romanBodmasCalculatorService.calculateRomanExpressionResult("(III + V ) * III + VI"));
 		Assert.assertEquals("LIV",
-				romanBodmasCalculatorService.calculateRomanExpressionResultString("VI + II * (III + V ) * III"));
+				romanBodmasCalculatorService.calculateRomanExpressionResult("VI + II * (III + V ) * III"));
 
 		Assert.assertEquals(
 				convertorService.convertNumeralToRomanNumber(
 						romanBodmasCalculatorService.processNumeralExpression("(13 + 4 ) * 10 - 53")),
-				romanBodmasCalculatorService.calculateRomanExpressionResultString("(XIII + IV ) * X - LIII"));
+				romanBodmasCalculatorService.calculateRomanExpressionResult("(XIII + IV ) * X - LIII"));
 	}
 
 	@Test
 	public void testPowerOperationOnRomanExpressions() {
-		System.out.println(romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II"));
-		Assert.assertEquals("XXXI", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II +VI"));
+		System.out.println(romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ II"));
+		Assert.assertEquals("XXXI", romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ II +VI"));
 
-		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ (V - III )"));
+		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResult("V ^ (V - III )"));
 	}
 }
