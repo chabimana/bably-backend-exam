@@ -55,7 +55,7 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 				numeralExpression.append(convertorService.convertRomanToNumericNumber(romanCharacter.toString()) + " ");
 			}
 		}
-		LOGGER.info("Numeral Expression: {}", numeralExpression.toString());
+		LOGGER.info("Numeral Expression: {}", numeralExpression);
 		return numeralExpression.toString();
 	}
 
