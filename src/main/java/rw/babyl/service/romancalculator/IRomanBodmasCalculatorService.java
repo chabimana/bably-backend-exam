@@ -11,8 +11,10 @@ package rw.babyl.service.romancalculator;
 public interface IRomanBodmasCalculatorService {
 
 	/**
-	 * Process numeral expression.This method was implemented from the algorithm developed by someone else. My job here
-	 * is its implementation
+	 * Process numeral expression.T <b>This method</b> was extended from the tutorial I took from
+	 * https://www.geeksforgeeks.org/expression-evaluation/. My work was the extension of what the explained in their
+	 * algorthm and adding missing operations (power)
+	 *
 	 *
 	 * @param inputExpression the input expression
 	 * @return the int
@@ -20,10 +22,8 @@ public interface IRomanBodmasCalculatorService {
 	int processNumeralExpression(String inputExpression);
 
 	/**
-	 * Generate numeral expression from roman expression. <b>This method</b> was extended from the tutorial I took from
-	 * https://www.geeksforgeeks.org/expression-evaluation/. My work was the extension of what the explained in their
-	 * algorthm and adding missing operations (power)
-	 *
+	 * Generate numeral expression from roman expression.
+	 * 
 	 * @param romanExpression the roman expression
 	 * @return the string
 	 */
