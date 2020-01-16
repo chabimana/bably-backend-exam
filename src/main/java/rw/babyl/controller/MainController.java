@@ -93,13 +93,19 @@ public class MainController {
 			model.addAttribute("request", request);
 			return "flamingo";
 		}
+		try {
+			List<Object> response = fizzBuzzPinkFlamingoService.pinkFlamingoChallenge(requestValue.getStartAt(),
+					requestValue.getStopAt());
+			LOGGER.info("Response: {}", response);
+			model.addAttribute("response", response);
+			model.addAttribute("messageDisplay", true);
+			return "flamingo";
+		} catch (IllegalArgumentException ex) {
+			model.addAttribute("response", "Invalid input data");
+			model.addAttribute("messageDisplay", true);
+			return "flamingo";
+		}
 
-		List<Object> response = fizzBuzzPinkFlamingoService.pinkFlamingoChallenge(requestValue.getStartAt(),
-				requestValue.getStopAt());
-		LOGGER.info("Response: {}", response);
-		model.addAttribute("response", response);
-		model.addAttribute("messageDisplay", true);
-		return "flamingo";
 	}
 
 	@GetMapping(value = "/bodmas")
