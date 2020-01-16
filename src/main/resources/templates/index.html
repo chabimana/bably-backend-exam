@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico" />
+
+<title>Babyl-RWANDA Backend Technical Assessment</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#">HABIMANA Clement Robert</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarCollapse" aria-controls="navbarCollapse"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Fizz
+						Buzz Challenge <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/flamingo">Pink
+						Flamingo Challenge</a></li>
+				<li class="nav-item"><a class="nav-link" href="/bodmas">Bodmas
+						Roman Calculator</a></li>
+			</ul>
+		</div>
+	</nav>
+	<main role="main" class="container">
+		<br /> <br />
+		<div class="jumbotron">
+			<h1>Fizz Buzz Challenge</h1>
+			<form>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Enter The Minimum Number</label> <input
+						type="text" class="form-control" id="exampleFormControlInput1"
+						placeholder="0">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Enter The Maximum Number</label> <input
+						type="text" class="form-control" id="exampleFormControlInput1"
+						placeholder="100">
+				</div>
+				
+			</form>
+		</div>
+	</main>
+</body>
+</html>
