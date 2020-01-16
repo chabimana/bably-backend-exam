@@ -61,4 +61,10 @@ public class TestRomanBodmasCalculatorService {
 						romanBodmasCalculatorService.processNumeralExpression("(13 + 4 ) * 10 - 53")),
 				romanBodmasCalculatorService.calculateRomanExpressionResultString("(XIII + IV ) * X - LIII"));
 	}
+
+	@Test
+	public void testPowerOperationOnRomanExpressions() {
+		System.out.println(romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II"));
+		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II"));
+	}
 }
