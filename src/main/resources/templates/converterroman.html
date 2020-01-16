@@ -29,13 +29,13 @@
 				<li class="nav-item"><a class="nav-link" href="#">Fizz Buzz
 						Challenge <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item  active"><a class="nav-link"
-					href="/flamingo">Pink Flamingo Challenge</a></li>
+				<li class="nav-item"><a class="nav-link" href="/flamingo">Pink
+						Flamingo Challenge</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="/converter/roman">Numeral to Roman Converter</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="/converter/numeral">Roman To Numeral Converter</a></li>
-				<li class="nav-item"><a class="nav-link" href="/bodmas">Bodmas
+				<li class="nav-item "><a class="nav-link" href="/bodmas">Bodmas
 						Roman Calculator</a></li>
 			</ul>
 		</div>
@@ -43,39 +43,28 @@
 	<main role="main" class="container">
 		<br /> <br />
 		<div class="jumbotron">
-			<h1>Pink Flamingo Challenge</h1>
-			<p>Then extend the program to say “Flamingo” when a number is a
-				member of the Fibonacci sequence, and “Pink Flamingo” when it is a
-				multiple of 3 and 5 and a member of the Fibonacci sequence. Hint: A
-				number is Fibonacci if and only if one or both of 5 * n or is a
-				perfect square 2 + 4 5 * n 2 − 4 (i.e. A number made by squaring a
-				whole number).</p>
-			<form th:action="@{/flamingo}" method="POST" th:object="${request}">
+			<h1>Numeral to Roman Converter</h1>
+			<p>Start by writing a Roman Numeral converter and from that Roman
+				Numerals</p>
+			<form th:action="@{/converter/toRoman}" method="POST"
+				th:object="${numRequest}">
 				<div class="row">
 					<div class="form-group  col-sm-3">
-						<label for="firstNumber" class="col-form-label">Start At:
-						</label> <input type="text" class="form-control" id=""
-							th:field="*{startAt}" value="0"><span
-							class="error text-danger" th:if="${#fields.hasErrors('startAt')}"
-							th:errors="*{startAt}"></span>
+						<label for="firstNumber" class="col-form-label">Enter a
+							Numeral Value</label> <input type="text" class="form-control" id=""
+							th:field="*{number}"> <span class="error text-danger"
+							th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
 					</div>
 				</div>
-				<div class="row">
-					<div class="form-group col-sm-3">
-						<label for="inputPassword" class="col-form-label">Stop At:
-						</label> <input type="text" class="form-control col-xs-3" id=""
-							th:field="*{stopAt}" placeholder="100"><span
-							class="error text-danger" th:if="${#fields.hasErrors('stopAt')}"
-							th:errors="*{stopAt}"></span>
-					</div>
-				</div>
-				<button type="submit" class="btn btn-primary">Generate Fizz
-					Buzz and Pink Flammingo Numbers</button>
+				<button type="submit" class="btn btn-primary">Convert To
+					Roman</button>
 			</form>
-			<p th:if="${messageDisplay}">
+			<p th:if="${messageDisplayRoman}">
 				<span th:text="${response}"></span>
 			</p>
 		</div>
+
+		
 	</main>
 </body>
 </html>

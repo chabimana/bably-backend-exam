@@ -31,7 +31,10 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/flamingo">Pink
 						Flamingo Challenge</a></li>
-				<li class="nav-item"><a class="nav-link" href="/convertor">Roman Numeral Convertor</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/converter/roman">Numeral to Roman Converter</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/converter/numeral">Roman To Numeral Converter</a></li>
 				<li class="nav-item active"><a class="nav-link" href="/bodmas">Bodmas
 						Roman Calculator</a></li>
 			</ul>
@@ -41,20 +44,25 @@
 		<br /> <br />
 		<div class="jumbotron">
 			<h1>BODMAS Roman Number Calculator</h1>
-			<p>Then write a Roman Numeral Calculator that takes a string
-				i.e. “XXIV + XI” and returns the result (in this case, “XXXV”).
-				Ideally, it should perform all BODMAS calculations:</p>
+			<p>Then write a Roman Numeral Calculator that takes a string i.e.
+				“XXIV + XI” and returns the result (in this case, “XXXV”). Ideally,
+				it should perform all BODMAS calculations:</p>
 			<form th:action="@{/bodmas}" method="POST" th:object="${request}">
 				<div class="row">
 					<div class="form-group  col-sm-8">
-						<label for="firstNumber" class="col-form-label">Input The Roman Expression you want to process:
-						</label> <input type="text" class="form-control" id=""
-							th:field="*{romanExpression}" value="0"><span
-							class="error text-danger" th:if="${#fields.hasErrors('romanExpression')}"
+						<label for="firstNumber" class="col-form-label">Input The
+							Roman Expression you want to process: </label><br /> <span
+							class="info text-info">FORMAT: Please add white space
+							between numbers and operands. Eg: XXIV + XI is correct while
+							XXIV+ XI or XXIV +XI can't be processed.</span><input type="text"
+							class="form-control" id="" th:field="*{romanExpression}">
+						<span class="error text-danger"
+							th:if="${#fields.hasErrors('romanExpression')}"
 							th:errors="*{romanExpression}"></span>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary">Process Roman Expression</button>
+				<button type="submit" class="btn btn-primary">Process Roman
+					Expression</button>
 			</form>
 			<p th:if="${messageDisplay}">
 				<span th:text="${response}"></span>

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import rw.babyl.service.fizzbuzz.IFizzBuzzPinkFlamingoService;
 import rw.babyl.service.romancalculator.IRomanBodmasCalculatorService;
+import rw.babyl.service.romancalculator.IRomanNumeralConvertorService;
 import rw.babyl.util.FIzzBuzzRequest;
+import rw.babyl.util.NumeralRequest;
 import rw.babyl.util.RomanRequest;
 
 /**
@@ -37,6 +39,9 @@ public class MainController {
 
 	@Autowired
 	private IRomanBodmasCalculatorService bodmasCalculator;
+
+	@Autowired
+	private IRomanNumeralConvertorService converterService;
 
 	@GetMapping(value = "/")
 	public String homepage(Model model) {
@@ -121,5 +126,66 @@ public class MainController {
 		model.addAttribute("response", response);
 		model.addAttribute("messageDisplay", true);
 		return "bodmas";
+	}
+
+	@GetMapping(value = "/converter/roman")
+	public String converteRomanHome(Model model) {
+		NumeralRequest numRequest = new NumeralRequest();
+		model.addAttribute("numRequest", numRequest);
+
+		return "converterroman";
+	}
+
+	@GetMapping(value = "/converter/numeral")
+	public String converterNumeralHome(Model model) {
+		RomanRequest romanRequest = new RomanRequest();
+		NumeralRequest numRequest = new NumeralRequest();
+		model.addAttribute("romanRequest", romanRequest);
+		model.addAttribute("numRequest", numRequest);
+		return "converternumeral";
+	}
+
+	@PostMapping(value = "/converter/toRoman")
+	public String convertNumeralToRoman(@ModelAttribute("numRequest") @Valid NumeralRequest number, Model model,
+			BindingResult results) {
+		LOGGER.info("Request:  {}", number);
+		LOGGER.error("Errors: {}", results);
+		if (results.hasErrors()) {
+			RomanRequest romanRequest = new RomanRequest();
+			NumeralRequest numRequest = new NumeralRequest();
+			model.addAttribute("romanRequest", romanRequest);
+			model.addAttribute("numRequest", numRequest);
+
+			return "converterroman";
+		}
+
+		String response = converterService.convertNumeralToRomanNumber(number.getNumber());
+
+		LOGGER.info("Response: {}", response);
+		model.addAttribute("response", response);
+		model.addAttribute("messageDisplayRoman", true);
+		return "converterroman";
+	}
+
+	@PostMapping(value = "/converter/toNumeral")
+	public String convertRomanToNumeral(@ModelAttribute("romanRequest") @Valid RomanRequest number, Model model,
+			BindingResult results) {
+		LOGGER.info("Request:  {}", number);
+		LOGGER.error("Errors: {}", results);
+		if (results.hasErrors()) {
+			RomanRequest romanRequest = new RomanRequest();
+			NumeralRequest numRequest = new NumeralRequest();
+			model.addAttribute("romanRequest", romanRequest);
+			model.addAttribute("numRequest", numRequest);
+
+			return "converternumeral";
+		}
+
+		int response = converterService.convertRomanToNumericNumber(number.getRomanExpression());
+
+		LOGGER.info("Response: {}", response);
+		model.addAttribute("response", response);
+		model.addAttribute("messageDisplayNumeral", true);
+		return "converternumeral";
 	}
 }

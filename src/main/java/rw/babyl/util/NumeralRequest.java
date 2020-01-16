@@ -2,6 +2,8 @@ package rw.babyl.util;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
+
 /**
  * @Author: chabiman
  * @FileName: FIzzBuzzRequest.java
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotNull;
 public class NumeralRequest {
 
 	@NotNull(message = "Enter a number to be converted")
+	@Range(min = 0, max = 4000, message = "Can only convert numbers between 0 and 4000")
 	private int number;
 
 	/**
