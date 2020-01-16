@@ -58,8 +58,8 @@ public class MainController {
 	}
 
 	@PostMapping(value = "/fizzbuzz")
-	public String generateFizzBuzzNumbers(@ModelAttribute("request") @Valid FIzzBuzzRequest requestValue, Model model,
-			BindingResult results) {
+	public String generateFizzBuzzNumbers(@ModelAttribute("request") @Valid FIzzBuzzRequest requestValue,
+			BindingResult results, Model model) {
 		LOGGER.info("Request:  {}", requestValue);
 		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
@@ -85,7 +85,7 @@ public class MainController {
 
 	@PostMapping(value = "/flamingo")
 	public String generatePinkFlamingoNumbers(@ModelAttribute("request") @Valid FIzzBuzzRequest requestValue,
-			Model model, BindingResult results) {
+			BindingResult results, Model model) {
 		LOGGER.info("Request:  {}", requestValue);
 		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
@@ -110,8 +110,8 @@ public class MainController {
 	}
 
 	@PostMapping(value = "/bodmas")
-	public String processBodmasExpression(@ModelAttribute("request") @Valid RomanRequest token, Model model,
-			BindingResult results) {
+	public String processBodmasExpression(@ModelAttribute("request") @Valid RomanRequest token, BindingResult results,
+			Model model) {
 		LOGGER.info("Request:  {}", token);
 		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
@@ -132,30 +132,17 @@ public class MainController {
 	public String converteRomanHome(Model model) {
 		NumeralRequest numRequest = new NumeralRequest();
 		model.addAttribute("numRequest", numRequest);
-
 		return "converterroman";
 	}
 
-	@GetMapping(value = "/converter/numeral")
-	public String converterNumeralHome(Model model) {
-		RomanRequest romanRequest = new RomanRequest();
-		NumeralRequest numRequest = new NumeralRequest();
-		model.addAttribute("romanRequest", romanRequest);
-		model.addAttribute("numRequest", numRequest);
-		return "converternumeral";
-	}
-
 	@PostMapping(value = "/converter/toRoman")
-	public String convertNumeralToRoman(@ModelAttribute("numRequest") @Valid NumeralRequest number, Model model,
-			BindingResult results) {
+	public String convertNumeralToRoman(@ModelAttribute("numRequest") @Valid NumeralRequest number,
+			BindingResult results, Model model) {
 		LOGGER.info("Request:  {}", number);
 		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
-			RomanRequest romanRequest = new RomanRequest();
 			NumeralRequest numRequest = new NumeralRequest();
-			model.addAttribute("romanRequest", romanRequest);
 			model.addAttribute("numRequest", numRequest);
-
 			return "converterroman";
 		}
 
@@ -167,21 +154,25 @@ public class MainController {
 		return "converterroman";
 	}
 
+	@GetMapping(value = "/converter/numeral")
+	public String converterNumeralHome(Model model) {
+		RomanRequest romanRequest = new RomanRequest();
+		model.addAttribute("romanRequest", romanRequest);
+		return "converternumeral";
+	}
+
 	@PostMapping(value = "/converter/toNumeral")
-	public String convertRomanToNumeral(@ModelAttribute("romanRequest") @Valid RomanRequest number, Model model,
-			BindingResult results) {
-		LOGGER.info("Request:  {}", number);
+	public String convertRomanToNumeral(@ModelAttribute("romanRequest") @Valid RomanRequest romanExpression,
+			BindingResult results, Model model) {
+		LOGGER.info("Request:  {}", romanExpression);
 		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
 			RomanRequest romanRequest = new RomanRequest();
-			NumeralRequest numRequest = new NumeralRequest();
 			model.addAttribute("romanRequest", romanRequest);
-			model.addAttribute("numRequest", numRequest);
-
 			return "converternumeral";
 		}
 
-		int response = converterService.convertRomanToNumericNumber(number.getRomanExpression());
+		int response = converterService.convertRomanToNumericNumber(romanExpression.getRomanExpression());
 
 		LOGGER.info("Response: {}", response);
 		model.addAttribute("response", response);
