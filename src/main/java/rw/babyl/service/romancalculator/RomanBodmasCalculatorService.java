@@ -2,6 +2,8 @@ package rw.babyl.service.romancalculator;
 
 import java.util.Stack;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,19 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	@Autowired
 	private IRomanNumeralConvertorService convertorService;
 
+	private Logger LOGGER = LoggerFactory.getLogger(RomanBodmasCalculatorService.class);
+
+	/*
+	 *
+	 * @see rw.babyl.service.romancalculator.IRomanBodmasCalculatorService#calculateRomanExpression(java.lang.String)
+	 */
+	@Override
+	public String calculateRomanExpression(String romaExpression) {
+		String numeralExpression = generateNumeralExpressionFromRomanExpression(romaExpression);
+		int numeralResult = processNumeralExpression(numeralExpression);
+		return convertorService.convertNumeralToRomanNumber(numeralResult);
+	}
+
 	/*
 	 *
 	 * @see
@@ -31,16 +46,16 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 		char[] tokens = romanExpression.toCharArray();
 		for (int i = 0; i < tokens.length; i++) {
 			if (isOperand(tokens[i])) {
-				numeralExpression.append(tokens[i]);
+				numeralExpression.append(tokens[i] + " ");
 			} else if (isRomanCharacter(tokens[i])) {
 				StringBuffer romanCharacter = new StringBuffer();
 				while (i < tokens.length && isRomanCharacter(tokens[i])) {
-
 					romanCharacter.append(tokens[i++]);
 				}
-				numeralExpression.append(convertorService.convertRomanToNumericNumber(romanCharacter.toString()));
+				numeralExpression.append(convertorService.convertRomanToNumericNumber(romanCharacter.toString()) + " ");
 			}
 		}
+		LOGGER.info("Numeral Expression: {}", numeralExpression.toString());
 		return numeralExpression.toString();
 	}
 
@@ -50,14 +65,12 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	 */
 	@Override
 	public int processNumeralExpression(String inputExpression) {
+		LOGGER.info("Input Numeral Expression: {}", inputExpression);
 		char[] tokens = inputExpression.toCharArray();
-
 		// Add all numbers in the stack
 		Stack<Integer> values = new Stack<Integer>();
-
 		// Add all operands in the stack
 		Stack<Character> ops = new Stack<Character>();
-
 		for (int i = 0; i < tokens.length; i++) {
 			// Current token is a whitespace, skip it
 			if (tokens[i] == ' ')
@@ -70,7 +83,6 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 					sbuf.append(tokens[i++]);
 				values.push(Integer.parseInt(sbuf.toString()));
 			}
-
 			// Current token is an opening brace, push it to 'ops'
 			else if (tokens[i] == '(')
 				ops.push(tokens[i]);
@@ -149,4 +161,5 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 			return true;
 		return false;
 	}
+
 }

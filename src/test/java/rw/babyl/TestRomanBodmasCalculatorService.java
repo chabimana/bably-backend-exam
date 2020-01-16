@@ -27,14 +27,24 @@ public class TestRomanBodmasCalculatorService {
 	@Test
 	public void testRomanBodmasCalculator() {
 		Assert.assertEquals(100, romanBodmasCalculatorService.processNumeralExpression("100 * ( 2 + 12 ) / 14"));
+
+		Assert.assertEquals(30, romanBodmasCalculatorService.processNumeralExpression("(3 + 5 ) * 3 + 6"));
 	}
 
 	@Test
 	public void testRomanToNumeralConversion() {
-		Assert.assertEquals("(3+4)*10",
+		Assert.assertEquals("( 3 + 4 ) * 10",
 				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
-
-		Assert.assertEquals("(13+4)*10-53",
+		Assert.assertEquals("( 13 + 4 ) * 10 - 53",
 				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
+	}
+
+	@Test
+	public void testArthimeticOperationsOnRomanExpresions() {
+		Assert.assertEquals("VII", romanBodmasCalculatorService.calculateRomanExpression("III + IV"));
+		Assert.assertEquals("XXIV", romanBodmasCalculatorService.calculateRomanExpression("(III + V ) * III"));
+		Assert.assertEquals("XXX", romanBodmasCalculatorService.calculateRomanExpression("(III + V ) * III + VI"));
+		Assert.assertEquals("LIV", romanBodmasCalculatorService.calculateRomanExpression("VI + II * (III + V ) * III"));
+
 	}
 }

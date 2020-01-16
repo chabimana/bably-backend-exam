@@ -22,4 +22,10 @@ public interface IRomanBodmasCalculatorService {
 	 */
 	String generateNumeralExpressionFromRomanExpression(String romanExpression);
 
+	/**
+	 * @param romaExpression
+	 * @return
+	 */
+	String calculateRomanExpression(String romaExpression);
+
 }
