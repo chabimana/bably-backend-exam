@@ -21,7 +21,7 @@ import rw.babyl.service.fizzbuzz.IFizzBuzzPinkFlamingoService;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BabylBackendExamApplicationTest {
+public class TestFizzBuzzPinkFlamingoChallengeService {
 
 	@Autowired
 	private IFizzBuzzPinkFlamingoService babylonService;

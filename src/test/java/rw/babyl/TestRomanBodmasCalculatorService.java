@@ -37,10 +37,9 @@ public class TestRomanBodmasCalculatorService {
 
 	@Test
 	public void testRomanToNumeralConversion() {
-		/*
-		 * Assert.assertEquals("(3 + 4 ) * 10",
-		 * romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
-		 */
+
+		Assert.assertEquals("( 3 + 4 ) * 10 ",
+				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(III + IV ) *X"));
 		System.out.println(
 				romanBodmasCalculatorService.generateNumeralExpressionFromRomanExpression("(XIII + IV ) * X - LIII"));
 		Assert.assertEquals("( 13 + 4 ) * 10 - 53 ",
