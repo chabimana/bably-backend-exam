@@ -25,7 +25,6 @@ public class TestRomanBodmasCalculatorService {
 
 	@Test
 	public void testRomanBodmasCalculator() {
-		romanBodmasCalculatorService.processRomanExpression("7/1+(2*6+7)-(8*6)");
+		romanBodmasCalculatorService.processRomanExpression("100 * ( 2 + 12 ) / 14");
 	}
-
 }

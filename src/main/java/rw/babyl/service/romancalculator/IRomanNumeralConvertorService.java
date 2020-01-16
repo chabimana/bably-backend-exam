@@ -9,7 +9,7 @@ package rw.babyl.service.romancalculator;
  * @ProjectName: babyl-backend-exam
  *
  */
-public interface IRomanNumeralCalculatorService {
+public interface IRomanNumeralConvertorService {
 
 	/**
 	 * This method converts numeral value into its corresponding roman number. It only supports numbers between 0 and

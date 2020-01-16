@@ -17,7 +17,7 @@ import rw.babyl.util.StandardRomanNumeralValue;
  *
  */
 @Service
-public class RomanNumeralCalculatorService implements IRomanNumeralCalculatorService {
+public class RomanNumeralConvertorlatorService implements IRomanNumeralConvertorService {
 
 	/*
 	 *

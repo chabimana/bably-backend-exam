@@ -1,14 +1,13 @@
 package rw.babyl.service.romancalculator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 import org.springframework.stereotype.Service;
 
 /**
  * @Author: chabiman
  * @FileName: RomanBodmasCalculatorService.java
- * @Date: Jan 15, 2020
+ * @Date: Jan 16, 2020
  * @Package: rw.babyl.service.romancalculator
  * @ProjectName: babyl-backend-exam
  *
@@ -16,67 +15,92 @@ import org.springframework.stereotype.Service;
 @Service
 public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorService {
 
-	private StringBuffer tokenBuffer;
-
-	private StringBuffer parentheseToken;
-
 	/*
 	 *
 	 * @see rw.babyl.service.romancalculator.IRomanBodmasCalculatorService#processRomanExpression(java.lang.String)
 	 */
 	@Override
 	public int processRomanExpression(String inputExpression) {
-		char[] characters = inputExpression.toCharArray();
-		List<String> tokens = new ArrayList<>();
-		for (int i = 0; i < characters.length; i++) {
+		char[] tokens = inputExpression.toCharArray();
 
-			tokenBuffer = new StringBuffer();
-			while (i < characters.length && characters[i] != '(' && characters[i] != ')') {
-				tokenBuffer.append(characters[i]);
-				i++;
+		// Add all numbers in the stack
+		Stack<Integer> values = new Stack<Integer>();
+
+		// Add all operands in the stack
+		Stack<Character> ops = new Stack<Character>();
+
+		for (int i = 0; i < tokens.length; i++) {
+			// Current token is a whitespace, skip it
+			if (tokens[i] == ' ')
+				continue;
+			// Current token is a number, push it to stack for numbers
+			if (tokens[i] >= '0' && tokens[i] <= '9') {
+				StringBuffer sbuf = new StringBuffer();
+				// There may be more than one digits in number
+				while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9')
+					sbuf.append(tokens[i++]);
+				values.push(Integer.parseInt(sbuf.toString()));
 			}
-			String processed = process(tokenBuffer.toString());
-			tokens.add(tokenBuffer.toString());
+
+			// Current token is an opening brace, push it to 'ops'
+			else if (tokens[i] == '(')
+				ops.push(tokens[i]);
+
+			// Closing brace encountered, solve entire brace
+			else if (tokens[i] == ')') {
+				while (ops.peek() != '(')
+					values.push(process(ops.pop(), values.pop(), values.pop()));
+				ops.pop();
+			}
+
+			// Current token is an operator.
+			else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/') {
+				while (!ops.empty() && processPrecedence(tokens[i], ops.peek()))
+					values.push(process(ops.pop(), values.pop(), values.pop()));
+				ops.push(tokens[i]);
+			}
 		}
-		System.out.println(tokens);
-		return 0;
+		while (!ops.empty())
+			values.push(process(ops.pop(), values.pop(), values.pop()));
+
+		int res = values.pop();
+
+		System.out.println(res + " RESULT");
+
+		return res;
 	}
 
 	/**
 	 * @param tokenBuffer2
 	 * @return
 	 */
-	private String process(String data) {
-		char[] number = data.toCharArray();
-		StringBuffer resultBuffer = new StringBuffer();
-		if (number.length == 1)
-			return resultBuffer.append(number[0]).toString();
-		else if (muchOperands(number))
-			return resultBuffer.append(number[0]).toString();
-		else {
-
+	private int process(char op, int b, int a) {
+		switch (op) {
+			case '+':
+				return a + b;
+			case '-':
+				return a - b;
+			case '*':
+				return a * b;
+			case '/':
+				if (b == 0)
+					throw new UnsupportedOperationException("Cannot divide by zero");
+				return a / b;
 		}
+		return 0;
 	}
 
 	/**
-	 * @param number
+	 * @param op1
+	 * @param op2
 	 * @return
 	 */
-	private boolean muchOperands(char[] number) {
-		int operands = 0;
-		int digits = 0;
-		for (int i = 0; i < number.length; i++) {
-			if (number[i] >= '0' && number[i] <= '9') {
-				StringBuffer sbuf = new StringBuffer();
-				while (i < number.length && number[i] >= '0' && number[i] <= '9')
-					sbuf.append(number[i++]);
-				digits++;
-			} else {
-				operands++;
-			}
-		}
-		if (operands == digits || operands > digits)
+	private boolean processPrecedence(char op1, char op2) {
+		if (op2 == '(' || op2 == ')')
+			return false;
+		if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-'))
+			return false;
+		else
 			return true;
-		return false;
 	}
 }
