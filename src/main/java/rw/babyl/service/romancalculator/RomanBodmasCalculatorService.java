@@ -28,7 +28,7 @@ public class RomanBodmasCalculatorService implements IRomanBodmasCalculatorServi
 	 * @see rw.babyl.service.romancalculator.IRomanBodmasCalculatorService#calculateRomanExpression(java.lang.String)
 	 */
 	@Override
-	public String calculateRomanExpression(String romaExpression) {
+	public String calculateRomanExpressionResultString(String romaExpression) {
 		String numeralExpression = generateNumeralExpressionFromRomanExpression(romaExpression);
 		int numeralResult = processNumeralExpression(numeralExpression);
 		return convertorService.convertNumeralToRomanNumber(numeralResult);

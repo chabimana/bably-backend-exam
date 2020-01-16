@@ -26,6 +26,6 @@ public interface IRomanBodmasCalculatorService {
 	 * @param romaExpression
 	 * @return
 	 */
-	String calculateRomanExpression(String romaExpression);
+	String calculateRomanExpressionResultString(String romaExpression);
 
 }
