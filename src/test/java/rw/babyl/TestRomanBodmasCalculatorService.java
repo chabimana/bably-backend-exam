@@ -65,6 +65,8 @@ public class TestRomanBodmasCalculatorService {
 	@Test
 	public void testPowerOperationOnRomanExpressions() {
 		System.out.println(romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II"));
-		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II"));
+		Assert.assertEquals("XXXI", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ II +VI"));
+
+		Assert.assertEquals("XXV", romanBodmasCalculatorService.calculateRomanExpressionResultString("V ^ (V - III )"));
 	}
 }
