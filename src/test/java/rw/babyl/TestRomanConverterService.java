@@ -19,7 +19,7 @@ import rw.babyl.service.romancalculator.IRomanNumeralConvertorService;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestRomanBodmasCalculatorService {
+public class TestRomanConverterService {
 
 	@Autowired
 	private IRomanNumeralConvertorService convertorService;
