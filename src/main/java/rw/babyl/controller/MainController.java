@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,12 +35,15 @@ public class MainController {
 
 	Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
+	/** The fizz buzz pink flamingo service. */
 	@Autowired
 	private IFizzBuzzPinkFlamingoService fizzBuzzPinkFlamingoService;
 
+	/** The bodmas calculator. */
 	@Autowired
 	private IRomanBodmasCalculatorService bodmasCalculator;
 
+	/** The converter service. */
 	@Autowired
 	private IRomanNumeralConvertorService converterService;
 
@@ -58,18 +62,14 @@ public class MainController {
 	}
 
 	@PostMapping(value = "/fizzbuzz")
-	public String generateFizzBuzzNumbers(@ModelAttribute("request") @Valid FIzzBuzzRequest requestValue,
-			BindingResult results, Model model) {
-		LOGGER.info("Request:  {}", requestValue);
-		LOGGER.error("Errors: {}", results);
-		if (results.hasErrors()) {
-			FIzzBuzzRequest request = new FIzzBuzzRequest();
-			model.addAttribute("request", request);
-			return "index";
+	public String generateFizzBuzzNumbers(@ModelAttribute("request") @Valid FIzzBuzzRequest request, Errors errors,
+			Model model) {
+		if (errors.hasErrors()) {
+			LOGGER.info("{}", errors.getAllErrors());
+			return "redirect:/fizzbuzz";
 		}
-
-		List<Object> response = fizzBuzzPinkFlamingoService.fizzBuzzChallenge(requestValue.getStartAt(),
-				requestValue.getStopAt());
+		List<Object> response = fizzBuzzPinkFlamingoService.fizzBuzzChallenge(request.getStartAt(),
+				request.getStopAt());
 		LOGGER.info("Response: {}", response);
 		model.addAttribute("response", response);
 		model.addAttribute("messageDisplay", true);
@@ -118,23 +118,19 @@ public class MainController {
 	@PostMapping(value = "/bodmas")
 	public String processBodmasExpression(@ModelAttribute("request") @Valid RomanRequest token, BindingResult results,
 			Model model) {
-		LOGGER.info("Request:  {}", token);
-		LOGGER.error("Errors: {}", results);
 		if (results.hasErrors()) {
 			RomanRequest request = new RomanRequest();
 			model.addAttribute("request", request);
 			return "bodmas";
 		}
-
 		String response = bodmasCalculator.calculateRomanExpressionResult(token.getRomanExpression().toUpperCase());
-
 		LOGGER.info("Response: {}", response);
 		model.addAttribute("response", response);
 		model.addAttribute("messageDisplay", true);
 		return "bodmas";
 	}
 
-	@GetMapping(value = "/converter/roman")
+	@GetMapping(value = "/converter/toRoman")
 	public String converteRomanHome(Model model) {
 		NumeralRequest numRequest = new NumeralRequest();
 		model.addAttribute("numRequest", numRequest);
@@ -160,7 +156,7 @@ public class MainController {
 		return "converterroman";
 	}
 
-	@GetMapping(value = "/converter/numeral")
+	@GetMapping(value = "/converter/toNumeral")
 	public String converterNumeralHome(Model model) {
 		RomanRequest romanRequest = new RomanRequest();
 		model.addAttribute("romanRequest", romanRequest);

@@ -26,45 +26,45 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/fizzbuzz">Fizz Buzz
-						Challenge <span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link" href="/fizzbuzz">Fizz
+						Buzz Challenge <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/flamingo">Pink
 						Flamingo Challenge</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/converter/toRoman">Numeral to Roman Converter</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/converter/roman">Numeral to Roman Converter</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/converter/numeral">Roman To Numeral Converter</a></li>
-				<li class="nav-item "><a class="nav-link" href="/bodmas">Bodmas
+					href="/converter/toNumeral">Roman To Numeral Converter</a></li>
+				<li class="nav-item"><a class="nav-link" href="/bodmas">Bodmas
 						Roman Calculator</a></li>
 			</ul>
 		</div>
 	</nav>
-	<main role="main" class="container">
-		<br /> <br />
-		<div class="jumbotron">
-			<h1>Numeral to Roman Converter</h1>
-			<p>Start by writing a Roman Numeral converter and from that Roman
-				Numerals</p>
-			<form th:action="@{/converter/toRoman}" method="POST"
-				th:object="${numRequest}">
-				<div class="row">
-					<div class="form-group  col-sm-3">
-						<label for="firstNumber" class="col-form-label">Enter a
-							Numeral Value</label> <input type="text" class="form-control" id=""
-							th:field="*{number}"> <span class="error text-danger"
-							th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
-					</div>
+	<main role="main" class="container"> <br />
+	<br />
+	<div class="jumbotron">
+		<h1>Numeral to Roman Converter</h1>
+		<p>Start by writing a Roman Numeral converter and from that Roman
+			Numerals</p>
+		<form th:action="@{/converter/toRoman}" method="POST"
+			th:object="${numRequest}">
+			<div class="row">
+				<div class="form-group  col-sm-3">
+					<label for="firstNumber" class="col-form-label">Enter a
+						Numeral Value</label> <input type="text" class="form-control" id=""
+						th:field="*{number}"> <span class="error text-danger"
+						th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
 				</div>
-				<button type="submit" class="btn btn-primary">Convert To
-					Roman</button>
-			</form>
-			<p th:if="${messageDisplayRoman}">
-				<span th:text="${response}"></span>
-			</p>
-		</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Convert To
+				Roman</button>
+		</form>
+		<p th:if="${messageDisplayRoman}">
+			<span th:text="${response}"></span>
+		</p>
+	</div>
 
-		
+
 	</main>
 </body>
 </html>

@@ -2,6 +2,7 @@ package rw.babyl.util;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 /**
  * @Author: chabiman
@@ -14,10 +15,11 @@ import javax.validation.constraints.NotNull;
 public class FIzzBuzzRequest {
 
 	@NotNull(message = "Please provide a number to start the list")
-	@Min(value = 0, message = "Negative numbers not allowed")
+	@Min(message = "Negative numbers not allowed", value = 0)
 	private int startAt;
 
 	@NotNull(message = "Please provide a number at which the process will stop")
+	@Positive(message = "Positive Numbers only allowed")
 	private int stopAt;
 
 	/**

@@ -81,7 +81,7 @@ public class FizzBuzzPinkFlamingoService implements IFizzBuzzPinkFlamingoService
 			else if (i % 3 != 0 && i % 5 == 0)
 				response.add("Buzz");
 			else if (isInFibonacciSequence(i) && i % 5 != 0 && i % 3 != 0)
-				response.add("Pink");
+				response.add("Flamingo");
 			else if (isInFibonacciSequence(i) && i % 5 == 0 && i % 3 == 0)
 				response.add("Pink Flamingo");
 			else

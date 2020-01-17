@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  */
 public class RomanRequest {
 
-	@NotNull(message = "Please write down the expression")
+	@NotNull(message = "Write down the expression")
 	private String romanExpression;
 
 	/**
