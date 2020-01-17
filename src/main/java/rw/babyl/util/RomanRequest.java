@@ -1,6 +1,7 @@
 package rw.babyl.util;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * @Author: chabiman
@@ -13,6 +14,9 @@ import javax.validation.constraints.NotNull;
 public class RomanRequest {
 
 	@NotNull(message = "Write down the expression")
+	@Pattern(
+			regexp = "^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$",
+				message = "Invalid Roman Number")
 	private String romanExpression;
 
 	/**
